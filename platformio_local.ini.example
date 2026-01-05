@@ -1,0 +1,14 @@
+; =============================================================================
+; PlatformIO Local Configuration (Example)
+; =============================================================================
+; Copy this file to platformio_local.ini and add your AccuWeather API key.
+; The local config file is gitignored to keep your API key private.
+;
+; To get an API key:
+; 1. Sign up at https://developer.accuweather.com/
+; 2. Create a new app to get your API key
+; 3. Replace YOUR_API_KEY_HERE below with your actual key
+; =============================================================================
+
+[env:lolin_c3_mini]
+build_src_flags = -DACCUWEATHER_API_KEY=\"YOUR_API_KEY_HERE\"

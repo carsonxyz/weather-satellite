@@ -25,8 +25,12 @@ const char* FIRMWARE_VERSION = "1.0.2";
 // CONFIGURATION (stored in NVS, set via captive portal)
 // =============================================================================
 
-// Hardcoded API key for all devices
-const char *ACCUWEATHER_API_KEY = "";
+// AccuWeather API key - defined via build flags in platformio_local.ini
+// See README.md for setup instructions
+#ifndef ACCUWEATHER_API_KEY
+#error "ACCUWEATHER_API_KEY is not defined. Create platformio_local.ini with your API key. See README.md for instructions."
+#endif
+const char *ACCUWEATHER_API_KEY_STR = ACCUWEATHER_API_KEY;
 
 // These are loaded from non-volatile storage
 String cfg_wifiSsid = "";
@@ -946,7 +950,7 @@ void fetchAccuWeatherLocation()
 
   http.begin(url);
   http.addHeader("Accept", "application/json");
-  http.addHeader("Authorization", String("Bearer ") + ACCUWEATHER_API_KEY);
+  http.addHeader("Authorization", String("Bearer ") + ACCUWEATHER_API_KEY_STR);
 
   int httpCode = http.GET();
 
@@ -1093,7 +1097,7 @@ void fetchForecast()
 
   http.begin(url);
   http.addHeader("Accept", "application/json");
-  http.addHeader("Authorization", String("Bearer ") + ACCUWEATHER_API_KEY);
+  http.addHeader("Authorization", String("Bearer ") + ACCUWEATHER_API_KEY_STR);
 
   int httpCode = http.GET();
 

@@ -95,11 +95,20 @@ The project uses PlatformIO with the following libraries:
    - Sign up at [AccuWeather Developer Portal](https://developer.accuweather.com/)
    - Create a new app to get your API key
 
-3. **Add your API key** to the configuration section at the top of `src/main.cpp`:
-
-   ```cpp
-   const char *ACCUWEATHER_API_KEY = "your_api_key";
+3. **Configure your API key**:
+   
+   Copy the example local config file and add your API key:
+   ```bash
+   cp platformio_local.ini.example platformio_local.ini
    ```
+   
+   Edit `platformio_local.ini` and replace `YOUR_API_KEY_HERE` with your actual AccuWeather API key:
+   ```ini
+   [env:lolin_c3_mini]
+   build_src_flags = -DACCUWEATHER_API_KEY=\"your_actual_api_key\"
+   ```
+   
+   > **Note**: `platformio_local.ini` is gitignored to keep your API key private.
 
 4. **Upload the firmware** using PlatformIO
 
